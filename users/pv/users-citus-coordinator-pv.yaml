@@ -11,8 +11,8 @@ spec:
   storageClassName: manual
   hostPath:
     path: "/mnt/pv/users-citus-coordinator-pv"
-    type: DirectoryOrCreate # Adjust to a directory on your host
+    type: DirectoryOrCreate 
 
-  claimRef:                # The claimRef binds this PV to a specific PVC
-    namespace: default     # Namespace where the PVC is created
-    name: users-citus-coordinator-pvc # Name of the corresponding PVC
+  claimRef:                
+    namespace: default     
+    name: users-citus-coordinator-pvc 

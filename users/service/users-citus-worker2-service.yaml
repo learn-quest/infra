@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: users-citus-worker2-deployment
+  name: users-citus-worker2-service
 spec:
   ports:
     - port: 5432

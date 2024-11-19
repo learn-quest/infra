@@ -27,7 +27,7 @@ spec:
         - name: POSTGRES_PASSWORD
           value: "root"
         - name: CitusCoordinator
-          value: "true"  # Flag for coordinator
+          value: "true"  
         volumeMounts:
           - mountPath: /var/lib/postgresql/data
             name: users-coordinator-data

@@ -25,7 +25,7 @@ spec:
         - name: POSTGRES_USER
           value: "postgres"
         - name: POSTGRES_PASSWORD
-          value: "true"  # Flag for worker2
+          value: "true"
         volumeMounts:
           - mountPath: /var/lib/postgresql/data
             name: users-worker2-data
