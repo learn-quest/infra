@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: users-citus-coordinator-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: "/mnt/pv/users-citus-coordinator-pv"
+    type: DirectoryOrCreate # Adjust to a directory on your host
+
+  claimRef:                # The claimRef binds this PV to a specific PVC
+    namespace: default     # Namespace where the PVC is created
+    name: users-citus-coordinator-pvc # Name of the corresponding PVC

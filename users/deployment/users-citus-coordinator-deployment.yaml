@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-citus-coordinator-deployment
+  labels:
+    app: users-citus-coordinator-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-citus-coordinator-deployment
+  template:
+    metadata:
+      labels:
+        app: users-citus-coordinator-deployment
+    spec:
+      containers:
+      - name: users-citus-coordinator-deployment
+        image: citusdata/citus:latest
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "root"
+        - name: CitusCoordinator
+          value: "true"  # Flag for coordinator
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: users-coordinator-data
+      volumes:
+      - name: users-coordinator-data
+        persistentVolumeClaim: 
+          claimName: users-citus-coordinator-pvc

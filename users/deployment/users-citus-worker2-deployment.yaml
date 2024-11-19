@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-citus-worker2-deployment
+  labels:
+    app: users-citus-worker2-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-citus-worker2-deployment
+  template:
+    metadata:
+      labels:
+        app: users-citus-worker2-deployment
+    spec:
+      containers:
+      - name: users-citus-worker2-deployment
+        image: citusdata/citus:latest
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "true"  # Flag for worker2
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: users-worker2-data
+      volumes:
+      - name: users-worker2-data
+        persistentVolumeClaim: 
+          claimName: users-citus-worker2-pvc
